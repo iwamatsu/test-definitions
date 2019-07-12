@@ -18,12 +18,11 @@ params:
     # Specify Linux kernel self test pre-build tarball name from below location
     # http://testdata.validation.linaro.org/tests/kselftest/
     # TESTPROG: kselftest_aarch64.tar.gz
-    TESTPROG: kselftest_armhf.tar.gz
+    TESTPROG: kselftest_x86-64.tar.gz
     SKIP_INSTALL: "false"
     # List of known unsupported test cases to be skipped
     SKIPLIST: ""
-    # TESTPROG_URL: "http://testdata.validation.linaro.org/tests/kselftest/kselftest_aarch64.tar.gz"
-    TESTPROG_URL: ""
+    TESTPROG_URL: "http://sakura.nigauri.org/~iwamatsu/cip/tmp/kselftest/kselftest_x86-64.tar.gz"
     KSELFTEST_PATH: "/opt/kselftests/mainline/"
 
     # SKIPFILE can be a filename from dir ./automated/linux/ltp/, an http URL,
@@ -42,7 +41,6 @@ params:
     BOARD: ""
     BRANCH: ""
     ENVIRONMENT: ""
-
 
 run:
     steps:

@@ -19,15 +19,16 @@ BOARD=""
 BRANCH=""
 ENVIRONMENT=""
 SKIPLIST=""
-TESTPROG_URL=""
+TESTPROG_URL="http://sakura.nigauri.org/~iwamatsu/cip/tmp/kselftest/kselftest_x86-64.tar.gz"
 
-if [ "$(uname -m)" = "aarch64" ]
-then
+if [ "$(uname -m)" = "aarch64" ] ; then
     TESTPROG="kselftest_aarch64.tar.gz"
+elif [ "$(uname -m)" = "x86_64" ] ; then
+    TESTPROG="kselftest_x86_64.tar.gz"
 fi
 
 usage() {
-    echo "Usage: $0 [-t kselftest_aarch64.tar.gz | kselftest_armhf.tar.gz]
+    echo "Usage: $0 [-t kselftest_aarch64.tar.gz | kselftest_armhf.tar.gz | kselftest_x86_64.tar.gz]
                     [-s True|False]
                     [-u url]
                     [-p path]
@@ -126,6 +127,7 @@ install() {
 ! check_root && error_msg "You need to be root to run this script."
 create_out_dir "${OUTPUT}"
 # shellcheck disable=SC2164
+
 cd "${OUTPUT}"
 
 install
@@ -135,15 +137,9 @@ if [ -d "${KSELFTEST_PATH}" ]; then
     # shellcheck disable=SC2164
     cd "${KSELFTEST_PATH}"
 else
-    if [ -n "${TESTPROG_URL}" ]; then
-      # Download kselftest tarball from given URL
-      wget "${TESTPROG_URL}" -O kselftest.tar.gz
-    elif [ -n "${TESTPROG}" ]; then
-      # Download and extract kselftest tarball.
-      wget http://testdata.validation.linaro.org/tests/kselftest/"${TESTPROG}" -O kselftest.tar.gz
-    fi
-    tar zxf "kselftest.tar.gz"
-    # shellcheck disable=SC2164
+    tar zxf ../${TESTPROG}
+    mkdir /lib64
+    cp /lib/ld-linux-x86-64.so.2 /lib64/.
     cd "kselftest"
 fi
 
