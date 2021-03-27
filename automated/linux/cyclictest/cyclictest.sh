@@ -40,7 +40,7 @@ create_out_dir "${OUTPUT}"
 # Run cyclictest.
 #if ! binary=$(command -v cyclictest); then
 detect_abi
-shellcheck disable=SC2154
+#shellcheck disable=SC2154
 binary="./bin/${abi}/cyclictest"
 #fi
 
