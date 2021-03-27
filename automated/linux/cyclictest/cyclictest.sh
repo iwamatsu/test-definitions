@@ -44,6 +44,8 @@ detect_abi
 binary="./bin/${abi}/cyclictest"
 #fi
 
+"${binary}" --help  | head
+
 background_process_start bgcmd --cmd "${BACKGROUND_CMD}"
 
 "${binary}" -q -p "${PRIORITY}" -i "${INTERVAL}" -t "${THREADS}" -a "${AFFINITY}" \
