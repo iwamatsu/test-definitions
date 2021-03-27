@@ -41,7 +41,7 @@ create_out_dir "${OUTPUT}"
 #if ! binary=$(command -v cyclictest); then
 #    detect_abi
 #    # shellcheck disable=SC2154
-#    binary="./bin/${abi}/cyclictest"
+binary="./bin/${abi}/cyclictest"
 #fi
 
 background_process_start bgcmd --cmd "${BACKGROUND_CMD}"
