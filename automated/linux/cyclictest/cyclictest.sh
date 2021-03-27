@@ -38,11 +38,11 @@ done
 create_out_dir "${OUTPUT}"
 
 # Run cyclictest.
-if ! binary=$(command -v cyclictest); then
-    detect_abi
-    # shellcheck disable=SC2154
-    binary="./bin/${abi}/cyclictest"
-fi
+#if ! binary=$(command -v cyclictest); then
+#    detect_abi
+#    # shellcheck disable=SC2154
+#    binary="./bin/${abi}/cyclictest"
+#fi
 
 background_process_start bgcmd --cmd "${BACKGROUND_CMD}"
 
